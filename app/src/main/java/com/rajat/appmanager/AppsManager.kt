@@ -46,7 +46,7 @@ class AppsManager {
             // Get the ActivityInfo from current ResolveInfo
             val activityInfo = resolveInfo.activityInfo
 
-            Log.d("AppManager","activityInfo packageName : "+activityInfo.applicationInfo.packageName)
+            Log.d("AppsManager","activityInfo packageName : "+activityInfo.applicationInfo.packageName)
             // If this is not a system app package
             if (!isSystemPackage(resolveInfo) && !isSelfAppPackage(activityInfo.applicationInfo.packageName) && isMyAppPackage(activityInfo.applicationInfo.packageName)) {
                 // Add the non system package to the list
