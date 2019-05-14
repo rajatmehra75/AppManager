@@ -68,7 +68,7 @@ class AppsManager {
 //        if(packageName == null || packageName == ""){
 //            return true
 //        }
-        Log.d("AppsManager","isMyAppPackage packageName : "+packageName)
+        Log.d("AppManager","isMyAppPackage packageName : "+packageName)
         return (packageName.toLowerCase().contains(myAppsPackage.toLowerCase()))
     }
 
