@@ -6,7 +6,7 @@ import android.content.pm.ApplicationInfo
 import android.content.pm.PackageManager
 import android.content.pm.ResolveInfo
 import android.graphics.drawable.Drawable
-import android.support.v4.content.ContextCompat
+import androidx.core.content.ContextCompat
 import android.util.Log
 import com.rajat.appmanager.R
 
@@ -15,9 +15,9 @@ import com.rajat.appmanager.R
  * Created by ist on 29/11/18.
  */
 class AppsManager {
-    private lateinit var mContext: Context
-//    val myAppsPackage = ""
-    val myAppsPackage = "smartfren"
+    private var mContext: Context
+    val myAppsPackage = ""
+//    val myAppsPackage = "smartfren"
 
     constructor(mContext: Context) {
         this.mContext = mContext
@@ -48,7 +48,7 @@ class AppsManager {
 
             Log.d("AppsManager","activityInfo packageName : "+activityInfo.applicationInfo.packageName)
             // If this is not a system app package
-            if (!isSystemPackage(resolveInfo) && !isSelfAppPackage(activityInfo.applicationInfo.packageName) && isMyAppPackage(activityInfo.applicationInfo.packageName)) {
+            if (/*!isSystemPackage(resolveInfo) &&*/ !isSelfAppPackage(activityInfo.applicationInfo.packageName) && isMyAppPackage(activityInfo.applicationInfo.packageName)) {
                 // Add the non system package to the list
                 packageNames.add(activityInfo.applicationInfo.packageName)
             }
@@ -85,7 +85,7 @@ class AppsManager {
         } catch (e: PackageManager.NameNotFoundException) {
             e.printStackTrace()
             // Get a default icon
-            icon = ContextCompat.getDrawable(mContext, R.drawable.navigation_empty_icon)
+            icon = ContextCompat.getDrawable(mContext, R.drawable.navigation_empty_icon)!!
         }
 
         return icon
