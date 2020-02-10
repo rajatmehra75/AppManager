@@ -1,4 +1,4 @@
-package com.rajat.alldemoapp.app_manager
+package com.rajat.appmanager
 
 import android.content.Context
 import android.content.Intent
@@ -8,7 +8,6 @@ import android.content.pm.ResolveInfo
 import android.graphics.drawable.Drawable
 import androidx.core.content.ContextCompat
 import android.util.Log
-import com.rajat.appmanager.R
 
 
 /**
@@ -16,7 +15,7 @@ import com.rajat.appmanager.R
  */
 class AppsManager {
     private var mContext: Context
-    val myAppsPackage = ""
+    private val myAppsPackage = ""
 //    val myAppsPackage = "smartfren"
 
     constructor(mContext: Context) {
@@ -58,17 +57,17 @@ class AppsManager {
     }
 
     // Custom method to check the package name is not this app package name
-    fun isSelfAppPackage(packageName: String): Boolean {
+    private fun isSelfAppPackage(packageName: String): Boolean {
         val thisAppPackageName = mContext.packageName
         return (thisAppPackageName == packageName)
     }
 
     // Custom method to check the package name is not this app package name
-    fun isMyAppPackage(packageName: String): Boolean {
+    private fun isMyAppPackage(packageName: String): Boolean {
 //        if(packageName == null || packageName == ""){
 //            return true
 //        }
-        Log.d("AppsManager","isMyAppPackage packageName : "+packageName)
+        Log.d("AppsManager", "isMyAppPackage packageName : $packageName")
         return (packageName.toLowerCase().contains(myAppsPackage.toLowerCase()))
     }
 
@@ -80,12 +79,12 @@ class AppsManager {
     // Custom method to get application icon by package name
     fun getAppIconByPackageName(packageName: String): Drawable {
         var icon: Drawable
-        try {
-            icon = mContext.packageManager.getApplicationIcon(packageName)
+        icon = try {
+            mContext.packageManager.getApplicationIcon(packageName)
         } catch (e: PackageManager.NameNotFoundException) {
             e.printStackTrace()
             // Get a default icon
-            icon = ContextCompat.getDrawable(mContext, R.drawable.navigation_empty_icon)!!
+            ContextCompat.getDrawable(mContext, R.drawable.navigation_empty_icon)!!
         }
 
         return icon

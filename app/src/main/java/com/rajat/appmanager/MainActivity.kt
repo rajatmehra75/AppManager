@@ -9,8 +9,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import android.view.View
-import com.rajat.alldemoapp.app_manager.AppsManager
-import com.rajat.alldemoapp.app_manager.UninstallAppsAdapter
 
 class MainActivity : AppCompatActivity() {
 
@@ -30,7 +28,7 @@ class MainActivity : AppCompatActivity() {
 
         // Get the widget reference from XML layout
         val mFab = findViewById<FloatingActionButton>(R.id.fab_refresh)
-        mRecyclerView = findViewById<RecyclerView>(R.id.recycler_view)
+        mRecyclerView = findViewById(R.id.recycler_view)
 
         // Define a layout for RecyclerView
         mLayoutManager = GridLayoutManager(mActivity, 1)

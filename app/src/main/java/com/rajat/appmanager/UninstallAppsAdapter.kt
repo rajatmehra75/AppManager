@@ -1,4 +1,4 @@
-package com.rajat.alldemoapp.app_manager
+package com.rajat.appmanager
 
 import android.app.Activity
 import android.content.Context
@@ -11,13 +11,12 @@ import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
-import com.rajat.appmanager.R
 
 
 /**
  * Created by ist on 29/11/18.
  */
-class UninstallAppsAdapter(val mDataSet: List<String>, val mContext: Context) : RecyclerView.Adapter<UninstallAppsAdapter.ViewHolder>() {
+class UninstallAppsAdapter(private val mDataSet: List<String>, val mContext: Context) : RecyclerView.Adapter<UninstallAppsAdapter.ViewHolder>() {
 
 //    private lateinit var mContext: Context
 //    private lateinit var mDataSet: List<String>
@@ -34,7 +33,7 @@ class UninstallAppsAdapter(val mDataSet: List<String>, val mContext: Context) : 
 //    }
 
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UninstallAppsAdapter.ViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val v = LayoutInflater.from(mContext).inflate(R.layout.custom_view_uninstall_apps, parent, false)
         return ViewHolder(v)
     }
@@ -68,16 +67,14 @@ class UninstallAppsAdapter(val mDataSet: List<String>, val mContext: Context) : 
         holder.mImageViewIcon.setImageDrawable(icon)
 
         // Set a click listener for ImageButton
-        holder.mImageButtonUninstall.setOnClickListener(object : View.OnClickListener {
-            override fun onClick(view: View) {
-                // Initialize a new Intent to uninstall an app/package
-                val intent = Intent(Intent.ACTION_DELETE)
-                intent.data = Uri.parse("package:" + packageName)
-                intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+        holder.mImageButtonUninstall.setOnClickListener {
+            // Initialize a new Intent to uninstall an app/package
+            val intent = Intent(Intent.ACTION_DELETE)
+            intent.data = Uri.parse("package:$packageName")
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
 //                mContext.startActivity(intent)
-                (mContext as Activity).startActivityForResult(intent,0)
-            }
-        })
+            (mContext as Activity).startActivityForResult(intent,0)
+        }
     }
 
 
